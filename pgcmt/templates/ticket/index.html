@@ -1,67 +1,19 @@
-<html>
-<head>
-<style type="text/css">
-body
-{
-	height: auto;
-	width: auto;
-}
-.container
-{
-	width:800px;
-	height:auto;
-	margin-bottom:15px;
-	border: none;
-}
-.header 
-{
-	font-size:15px;
-	border-bottom:#00386b 1px solid;
-	color:#000;
-	width:100%;
-	height:auto; 
-	padding:10px 0 10px 0;
-	float:left;
-	background:#bfc6cf;
-	font-family: arial;
-}
-.content 
-{
-	float:left;
-	padding:0;
-	background:#ccc;
-	width:100%;	
-	height:auto;
-	text-align: left;
-	margin: 0;
-	margin-bottom: 10px;
+{% extends "base.html" %}  
 
-	font-size: 14px;
-	font-family: arial;
-}
-#content_label p
-{
-	margin:10px;
-	width: auto;
-	height: auto;
-	font-family: arial;
-}
-</style>
 
-</head>
-<body>
-
-<center>
-<a href="/ticket/create/project/">Create Project</a> | 
-<a href="/ticket/create/ticket/">Create Ticket</a> | 
-<a href="/ticket/projects/">List Projects</a>
-<br><hr>
+{% block content %}
+<form action="/ticket/search/" method="GET">
+{{  search_form.as_table }}
+</form>
+{% if tickets|length > 0 %}
 {% for ticket in tickets %}
 	<div class="container">
-		<div class="header"> <b>{{ ticket.user_id }}</b> made for <b>{{ ticket.project_id }} </b> at <b>{{ ticket.created_at|date:'d-m-Y H:i' }}</b></div>
+		<div class="header"> <a href="{% url showUser ticket.user %}"> {{ ticket.user }} </a> made for <a href="{% url showProject ticket.project %}">{{ ticket.project }} </a></b> requested by <a href="{% url showRequestUser ticket.requested_by_id %}"> {{ ticket.requested_by }} </a> at {{ ticket.created_at|date:'d.m.Y H:i' }} </div>
 		<div class="content"><label id="content_label">{{ ticket.content|linebreaks }} </label></div>
 	</div>
 {% endfor %}
-</center>
-</body>
-</html>
+{% else %}
+<span>NO RESULT FOUND</span>
+{% endif %}
+
+{% endblock %}

@@ -15,7 +15,12 @@ urlpatterns = patterns('',
     url(r'^ticket/create/project/$','pgcmt.ticket.views.createProject',name='CreateProject'),
     url(r'^ticket/create/ticket/$','pgcmt.ticket.views.createTicket',name='CreateTicket'),
     url(r'^ticket/projects/$','pgcmt.ticket.views.listProjects',name='Projects'),
+    url(r'^ticket/search/$','pgcmt.ticket.views.searchTicket',name='searchTicket'),
     url(r'^ticket/project/(?P<project_name>\w+)/$','pgcmt.ticket.views.showProject',name='showProject'),
+    url(r'^ticket/user/(?P<username>\w+)/$','pgcmt.ticket.views.showUser',name='showUser'),
+    url(r'^ticket/requestuser/(?P<requestuser_id>\w+)/$','pgcmt.ticket.views.showRequestUser',name='showRequestUser'),
+    url(r'^ticket/login/$','pgcmt.auth.views.check_login',name='Login'),
+    url(r'^ticket/logout/$','pgcmt.auth.views.logout_view',name='Logout'),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
