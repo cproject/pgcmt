@@ -31,7 +31,7 @@ def createTicket(request):
         form = CreateTicketForm(request.POST)
         if form.is_valid():
             ticket = Ticket()
-            ticket.user = User.objects.get(id=1)
+            ticket.user = User.objects.get(username=request.user)
             ticket.project = Project.objects.get(name=form.cleaned_data["project_id"])
             ticket.content = form.cleaned_data["content"]
             ticket.requested_by = RequestUser.objects.get(username=form.cleaned_data["requested_by_id"])
