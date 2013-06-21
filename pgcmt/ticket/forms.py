@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.db import models
-from pgcmt.ticket.views import Project,RequestUser
+from ticket.views import Project,RequestUser
 #from cover.models import Cover
 
 class CreateProjectForm(forms.Form):

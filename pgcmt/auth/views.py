@@ -1,4 +1,4 @@
-from pgcmt.auth.models import LoginForm
+from auth.models import LoginForm
 from django.shortcuts import render_to_response, HttpResponseRedirect,render
 from django.contrib.auth import *
 
@@ -11,7 +11,7 @@ def check_login(request):
         })
     if request.user.is_authenticated():
         username = request.user.username
-        return HttpResponseRedirect("/ticket/")
+        return HttpResponseRedirect("/")
     else:
         if request.method == 'POST': # If the form has been submitted...
             form = LoginForm(request.POST) # A form bound to the POST data
@@ -23,7 +23,7 @@ def check_login(request):
                     if user.is_active:
                         # Redirect to a success page.
                         login(request, user)
-                        return HttpResponseRedirect("/ticket/")
+                        return HttpResponseRedirect(request.POST["next"])
                     else:
                         # Return a 'disabled account' error message
                         error = u'account disabled'
@@ -36,8 +36,13 @@ def check_login(request):
                 error = u'form is invalid'
                 return errorHandle(error)       
         else:
-            form = LoginForm() # An unbound form
-            return render(request,'auth/login.html', { 'form': form, })
+            #form = LoginForm(initial={'next':request.GET["next"]}) # An unbound form
+            if 'next' in request.GET:
+                next = request.GET["next"]
+            else:
+                next = "/"
+            form = LoginForm(initial={'next':next}) # An unbound form
+            return render(request,'auth/login.html', { 'form': form, 'title':'Login' })
 
 def logout_view(request):
     if request.user.is_authenticated():

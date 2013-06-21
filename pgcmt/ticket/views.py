@@ -1,7 +1,7 @@
 # Create your views here.
 from django.shortcuts import render_to_response, render,HttpResponseRedirect
-from pgcmt.ticket.models import Ticket,Project,RequestUser
-from pgcmt.ticket.forms import CreateProjectForm, CreateTicketForm, SearchTicketForm
+from ticket.models import Ticket,Project,RequestUser
+from ticket.forms import CreateProjectForm, CreateTicketForm, SearchTicketForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 

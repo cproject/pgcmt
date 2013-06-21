@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib import admin
-from pgcmt.ticket.models import Ticket,Project,RequestUser
+from ticket.models import Ticket,Project,RequestUser
 
 class TicketAdmin(admin.ModelAdmin):
     search_fields = ["content"]
