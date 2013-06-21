@@ -152,4 +152,4 @@ LOGGING = {
         },
     }
 }
-LOGIN_URL = "/ticket/login/"
+LOGIN_URL = "/login/"

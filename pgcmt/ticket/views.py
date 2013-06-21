@@ -20,7 +20,7 @@ def createProject(request):
             project.name = form.cleaned_data["name"]
             project.save()
             tickets = Ticket.objects.all()
-            return HttpResponseRedirect("/ticket/projects/")
+            return HttpResponseRedirect("/projects/")
     else:
         return render(request,"ticket/create_project.html",{'form':form,'title':'Create Project','username':request.user})
 
@@ -36,7 +36,7 @@ def createTicket(request):
             ticket.content = form.cleaned_data["content"]
             ticket.requested_by = RequestUser.objects.get(username=form.cleaned_data["requested_by_id"])
             ticket.save()
-            return HttpResponseRedirect("/ticket/")
+            return HttpResponseRedirect("/")
     else:
         return render(request,"ticket/create_ticket.html",{'form':form,'title':'Create Ticket','username':request.user})
 

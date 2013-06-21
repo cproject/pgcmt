@@ -136,14 +136,14 @@ a
 <body>
 
 <center>
-<a href="/ticket/create/project/">Create Project</a> | 
-<a href="/ticket/create/ticket/">Create Ticket</a> | 
-<a href="/ticket/projects/">List Projects</a> <br>
+<a href="/create/project/">Create Project</a> | 
+<a href="/create/ticket/">Create Ticket</a> | 
+<a href="/projects/">List Projects</a> <br>
 
 {% if username %}
- {{ username }} | <a href="/ticket/logout/">Logout</a>
+ {{ username }} | <a href="/logout/">Logout</a>
 {% else %}
-<a href="/ticket/login/">Login</a>
+<a href="/login/">Login</a>
 {% endif %}
 <br><hr>
     {% block content %} {% endblock %}  

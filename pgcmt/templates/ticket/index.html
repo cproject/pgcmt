@@ -2,13 +2,13 @@
 
 
 {% block content %}
-<form action="/ticket/search/" method="GET">
+<form action="/search/" method="GET">
 {{  search_form.as_table }}
 </form>
 {% if tickets|length > 0 %}
 {% for ticket in tickets %}
 	<div class="container">
-		<div class="header"> <a href="{% url showUser ticket.user %}"> {{ ticket.user }} </a> made for <a href="{% url showProject ticket.project %}">{{ ticket.project }} </a></b> requested by <a href="{% url showRequestUser ticket.requested_by_id %}"> {{ ticket.requested_by }} </a> at {{ ticket.created_at|date:'d.m.Y H:i' }} </div>
+		<div class="header"> <a href="{% url 'showUser' ticket.user %}"> {{ ticket.user }} </a> made for <a href="{% url 'showProject' ticket.project %}">{{ ticket.project }} </a></b> requested by <a href="{% url 'showRequestUser' ticket.requested_by_id %}"> {{ ticket.requested_by }} </a> at {{ ticket.created_at|date:'d.m.Y H:i' }} </div>
 		<div class="content"><label id="content_label">{{ ticket.content|linebreaks }} </label></div>
 	</div>
 {% endfor %}
