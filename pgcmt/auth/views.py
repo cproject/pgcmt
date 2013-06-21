@@ -5,10 +5,7 @@ from django.contrib.auth import *
 def check_login(request):
     def errorHandle(error):
         form = LoginForm()
-        return render(request,'auth/login.html', {
-                'error' : error,
-                'form' : form,
-        })
+        return render(request,'auth/login.html', { 'error' : error, 'form' : form, 'title':'Login' })
     if request.user.is_authenticated():
         username = request.user.username
         return HttpResponseRedirect("/")
@@ -42,7 +39,7 @@ def check_login(request):
             else:
                 next = "/"
             form = LoginForm(initial={'next':next}) # An unbound form
-            return render(request,'auth/login.html', { 'form': form, 'title':'Login' })
+            return render(request,'auth/login.html', { 'form': form, 'title':'Login','title':'Login' })
 
 def logout_view(request):
     if request.user.is_authenticated():
