@@ -1,0 +1,151 @@
+/**
+* Defaults.css
+* @author Markafoni Front-end Team
+* @version 0.1
+*/
+
+/* ============================ RESET ============================ */
+
+/* ===== Eric Meyer Reset ===== */
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* ======================= GENERIC CLASSES ======================= */
+
+
+/* ===== FRAMEWORK ===== */
+
+/* clearfix hack [http://j.mp/bestclearfix] */
+.clearfix:before, .clearfix:after, .clearfix > .lastcol:after, .ffluid:after, br.cb{display:block; height:0 !important; line-height:0; overflow:hidden; visibility:hidden}
+.clearfix:before, .clearfix:after{content:"."}
+.clearfix:after{clear:both}
+.clearfix, .ffluid{*zoom:1}
+
+/* Nicole Sullivan zoom-fix hack [http://bit.ly/gpXFlK] */
+.fcolholder:after, .fcolholder .lastcol:after, .ffluid:after{font-size:xx-large; content:" x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x "}
+.fcolholder .lastcol{display:table-cell; float:none; width:auto !important; *display:block; *zoom:1; _position:relative; _left:-3px; _margin-right:-3px}
+
+
+/* -- image -- */
+
+/* image replacement (borrowed from HTML5 boilerplate) */
+.ir{text-indent:-999em; display:block; overflow:hidden; text-align:left; direction:ltr}
+
+/* -- floats -- */
+
+.fl{float:left;}
+.fr{float:right;}
+.ffluid{display:table-cell; *display:block; width:auto}
+.cr{clear:right}
+.cl{clear:left}
+.cb{clear:both}
+
+
+/* -- display -- */
+
+.hidden{display:none !important}
+.hidden, .invisible{visibility:hidden !important}
+
+
+/* -- centering -- */
+
+/* vertical centering technique [http://www.jakpsatweb.cz/css/css-vertical-center-solution.html] */
+.vcenter{/* height of .vcenter element is required */ overflow:hidden; *position:relative; display:table; *display:block}
+.vcenter .outer{display:table-cell; vertical-align:middle; width:100%; *position:absolute; *top:50%}
+.vcenter .inner{*position:relative; *top:-50%}
+
+.hcenter{/* width is required */ margin-left:auto !important; margin-right:auto !important}
+
+
+/* -- text helpers -- */
+
+.tcenter{text-align:center}
+.tleft{text-align:left}
+.tright{text-align:right}
+.tupper{text-transform:uppercase}
+.tlower{text-transform:lowercase}
+.tnormal{text-transform:none}
+.ttop{text-align:top}
+.tmiddle{text-align:middle}
+.tbottom{text-align:bottom}
+
+
+/* -- interaction helpers -- */
+
+.clickable, .btn{cursor:pointer}
+.clickable.disabled, .btn.disabled{cursor:default !important}
+
+
+/* ===== PROJECT SPECIFIC ===== */
+
+
+/* --- font-styles --- */
+
+.b{font-weight:bold}
+.em{font-style:italic}
+.del{text-decoration:line-through}
+
+
+/* --- css selection --- */
+::selection { background:#323232;  color:#ffffff;}
+::-moz-selection { background:#323232; color:#ffffff; }
+
+/* ScrollBar */
+.product-detail-tabs { width: 448px; clear: both; margin: 0; }
+.product-detail-tabs .viewport { width: 435px; height: 140px; overflow: hidden; position: relative; }
+.product-detail-tabs .overview { list-style: none; position: absolute; left: 0; top: 0; }
+.product-detail-tabs .thumb .end,
+.product-detail-tabs .thumb {  margin-top: 1px; }
+.product-detail-tabs .scrollbar { position: relative; float: right; width: 7px; }
+.product-detail-tabs .track { background-color: #b5b5b5; height: 100%; width:5px; position: relative; padding: 1px; }
+.product-detail-tabs .thumb { height: 20px; width: 5px; cursor: pointer; overflow: hidden; position: absolute; top: 0; background: #ffffff url(../images/scroll-track.png) center no-repeat; }
+.product-detail-tabs .thumb .end { overflow: hidden; height: 5px; width: 8px; }
+.product-detail-tabs .disable{ display: none; }  

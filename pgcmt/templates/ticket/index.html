@@ -5,6 +5,7 @@
 <form action="/search/" method="GET">
 {{  search_form.as_table }}
 </form>
+<br>
 {% if tickets|length > 0 %}
 {% for ticket in tickets %}
 	<div class="container">

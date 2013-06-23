@@ -1,152 +1,37 @@
 <html>
 <head>
-<style type="text/css">
-body
-{
-    height: auto;
-    width: auto;
-}
-
-a 
-{
-    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
-    text-decoration: none;
-    color: #00186b;
-}
-
-.container
-{
-    width:900px;
-    height:auto;
-    margin-bottom:15px;
-    border: none;
-}
-.header 
-{
-    font-size:15px;
-    border-bottom:#00386b 1px solid;
-    color:#000;
-    width:100%;
-    height:auto; 
-    padding:10px 0 10px 0;
-    float:left;
-    background:#bfc6cf;
-    font-family: arial;
-    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
-    font-family:"Lucida Grande",Verdana,Arial;
-    border-top-right-radius:5px;
-    border-top-left-radius:5px;
-}
-.header a 
-{
-    text-decoration: none;
-    color: #00386b;
-    font-weight:bold;
-    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
-    font-size: 15px;
-}
-.header a:hover
-{
-    color:#000;
-}
-.content 
-{
-    float:left;
-    padding:0;
-    background:#ccc;
-    width:100%; 
-    height:auto;
-    text-align: left;
-    margin: 0;
-    margin-bottom: 10px;
-    font-size: 14px;
-        border-bottom-left-radius:5px;
-    border-bottom-right-radius:5px;
-    
-}
-#content_label p
-{
-    margin:10px;
-    width: auto;
-    height: auto;
-    font-family: arial;
-    font-family:"Lucida Grande",Verdana,Arial;
-    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
-    font-size:16px;
-}
-
-.container_project
-{
-    width:200px;
-    height:auto;
-    margin-bottom:15px;
-    border: none;
-}
-.header_project
-{
-    font-size:24px;
-    border-bottom:#00386b 1px solid;
-    color:#000;
-    width:100%;
-    height:auto; 
-    padding:10px 0 10px 0;
-    float:left;
-    background:#bfc6cf;
-    font-family: arial;
-}
-.content_project
-{
-    float:left;
-    padding:10px 0 10px 0;
-    background:#ccc;
-    width:100%; 
-    height:auto;
-    text-align: left;
-    margin: 0;
-    margin-top: 2px;
-    font-size: 14px;
-    font-family: arial;
-    text-align: center;
-}
-
-.content_project a 
-{
-    font-size: 20px;
-    text-decoration: none;
-    color: #00386b;
-    width: 100%;
-}
-
-#id_query
-{
-    font-family:"Lucida Grande",Verdana,Arial;
-    font-size: 22px;
-    background-color: #DDD;
-    padding:5px;
-    border: none;
-    color: #00386b;
-    border-bottom-left-radius:5px;
-    border-bottom-right-radius:5px;
-    border-top-right-radius:5px;
-    border-top-left-radius:5px;
-}
-</style>
-<title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/defaults.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+    <title>{{ title }}</title>
 </head>
 <body>
 
-<center>
+<!--<a href="/">Show All</a> | 
 <a href="/create/project/">Create Project</a> | 
 <a href="/create/ticket/">Create Ticket</a> | 
+<a href="/create/requestUser/">Create Responsible</a> | 
 <a href="/projects/">List Projects</a> <br>
+-->
+<div class="bodyContent">
 
-{% if username %}
- {{ username }} | <a href="/logout/">Logout</a>
-{% else %}
-<a href="/login/">Login</a>
-{% endif %}
-<br><hr>
+<div class="mainMenu">
+    <ul>
+        <li><a href="/">Show All</a> </li>
+        <li><a href="/create/project/">Create Project</a> </li>
+        <li><a href="/create/ticket/">Create Ticket</a> </li>
+        <li><a href="/create/requestUser/">Create Responsible</a> </li>
+        <li><a href="/projects/">List Projects</a> <br></li>
+        <hr>
+        {% if username %}
+         {{ username }} | <a href="/logout/">Logout</a>
+        {% else %}
+        <li><a href="/login/">Login</a></li>
+        {% endif %}
+    </ul>
+</div>
+<center>
     {% block content %} {% endblock %}  
 </center>
+</div>
 </body>
 </html>

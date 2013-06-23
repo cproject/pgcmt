@@ -1,0 +1,263 @@
+body
+{
+    height: auto;
+    width: auto;
+}
+
+a 
+{
+    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
+    text-decoration: none;
+    color: #00186b;
+}
+
+.mainMenu
+{
+    float: left;
+    list-style: none;
+    
+    width: auto;
+    height: auto;
+    
+}
+.mainMenu ul
+{
+    list-style: none; 
+    margin:10px; 
+    padding:0;
+}
+.mainMenu ul li 
+{
+    padding-top: 3px;
+}
+.bodyContent 
+{
+    float:left;
+    
+    padding: 20px;
+    width: 100%;
+}
+.container
+{
+    width:900px;
+    height:auto;
+    margin-bottom:15px;
+    border: none;
+}
+.header 
+{
+    font-size:15px;
+    border-bottom:#00386b 1px solid;
+    color:#000;
+    width:100%;
+    height:auto; 
+    padding:10px 0 10px 0;
+    float:left;
+    background:#bfc6cf;
+    font-family: arial;
+    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
+    font-family:"Lucida Grande",Verdana,Arial;
+    border-top-right-radius:5px;
+    border-top-left-radius:5px;
+}
+.header a 
+{
+    text-decoration: none;
+    color: #00386b;
+    font-weight:bold;
+    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
+    font-size: 15px;
+}
+.header a:hover
+{
+    color:#000;
+}
+.content 
+{
+    float:left;
+    padding:0;
+    background:#ccc;
+    width:100%; 
+    height:auto;
+    text-align: left;
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+        border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+    
+}
+#content_label p
+{
+    margin:10px;
+    width: auto;
+    height: auto;
+    font-family: arial;
+    font-family:"Lucida Grande",Verdana,Arial;
+    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
+    font-size:16px;
+}
+
+.container_project
+{
+    width:200px;
+    height:auto;
+    margin-bottom:15px;
+    border: none;
+}
+.header_project
+{
+    font-size:24px;
+    border-bottom:#00386b 1px solid;
+    color:#000;
+    width:100%;
+    height:auto; 
+    padding:10px 0 10px 0;
+    float:left;
+    background:#bfc6cf;
+    font-family: arial;
+}
+.content_project
+{
+    float:left;
+    padding:10px 0 10px 0;
+    background:#ccc;
+    width:100%; 
+    height:auto;
+    text-align: left;
+    margin: 0;
+    margin-top: 2px;
+    font-size: 14px;
+    font-family: arial;
+    text-align: center;
+}
+
+.content_project a 
+{
+    font-size: 20px;
+    text-decoration: none;
+    color: #00386b;
+    width: 100%;
+}
+
+#id_query
+{
+    font-family:"Lucida Grande",Verdana,Arial;
+    font-size: 22px;
+    background-color: #DDD;
+    padding:5px;
+    border: none;
+    color: #00386b;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+    border-top-right-radius:5px;
+    border-top-left-radius:5px;
+}
+
+.create_project_form 
+{
+    margin:0;
+    padding: 0;
+}
+
+.create_project_form label {
+    color:#00386b;
+    font-size: 18px;
+    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
+}
+.create_project_form  input[type=text] {
+    border:#00386b 1px solid;
+    height:30px;
+    width: 150px;
+    font-size: 18px;
+    padding: 5px;
+    color:#00386b;
+    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
+}
+.create_project_form input[type=submit] {
+    height: 30px;
+    width: 150px;
+    border: none;
+    background: #00386b;
+    color: white;
+    font-size: 18px;
+    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
+}
+
+.create_ticket_form {
+    font-family:"Lucida Grande",Verdana,Arial;
+}
+.create_ticket_form input {
+    height: 30px;
+    width: 150px;
+    border: none;
+    background: #00386b;
+    color: white;
+    font-size: 18px;
+}
+.create_ticket_form textarea
+{
+    width:800px;
+    font-family:"Lucida Grande",Verdana,Arial;
+    border:#00386b 1px solid;
+}
+
+.create_form 
+{
+    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
+}
+
+.create_form label
+{
+    color:#00386b;
+    font-size: 18px;
+    text-align: left;
+}
+
+.create_form input 
+{
+    height: 30px;
+    width: 150px;
+    border: none;
+    background: #bfc6cf;
+    color: white;
+}
+.create_form input[type=text], input[type=password]
+{
+    border:#00386b 3px solid;
+    height:30px;
+    width: 200px;
+    font-size: 18px;
+    padding: 5px;
+    color:#00386b;
+    background: #bfc6cf;
+    margin-bottom: 5px;
+}
+.create_form input[type=submit] 
+{
+    height: 30px;
+    width: 150px;
+    border: none;
+    background: #00386b;
+    color: white;
+    font-size: 18px;
+    margin-top:5px;
+}
+.create_form textarea 
+{
+    width:800px;
+    font-size: 14px;
+    padding:10px;
+    text-align:justify;
+    border:#00386b 3px solid;
+    background: #bfc6cf;
+    color: #00386b;
+}
+h1
+{
+    font-size: 24px;
+    color: #00386b;
+    margin:0 0 10px 0;
+    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
+
+}

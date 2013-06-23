@@ -1,7 +1,7 @@
 # Create your views here.
 from django.shortcuts import render_to_response, render,HttpResponseRedirect
 from ticket.models import Ticket,Project,RequestUser
-from ticket.forms import CreateProjectForm, CreateTicketForm, SearchTicketForm
+from ticket.forms import CreateProjectForm, CreateTicketForm, SearchTicketForm, CreateRequestUser
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -39,6 +39,18 @@ def createTicket(request):
             return HttpResponseRedirect("/")
     else:
         return render(request,"ticket/create_ticket.html",{'form':form,'title':'Create Ticket','username':request.user})
+
+@login_required
+def createRequestUser(request):
+    form = CreateRequestUser(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            requestUser = RequestUser()
+            requestUser.username = form.cleaned_data["name"]
+            requestUser.save()
+            return HttpResponseRedirect("/")
+    else:
+        return render(request,"ticket/create_requestuser.html",{'form':form,'username':request.user,'title':'Create Responsible'})
 
 def listProjects(request):
     projects = Project.objects.all().order_by("name")

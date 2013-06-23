@@ -10,8 +10,8 @@ class TicketAdmin(admin.ModelAdmin):
 
 class ProjectAdmin(admin.ModelAdmin):
     search_fields = [ "name" ]
-    fields = ('name', 'created_at')
-    list_display = ('name', 'created_at')
+    fields = ('name', 'description','created_at')
+    list_display = ('name', 'description', 'created_at')
 
 class RequestUserAdmin(admin.ModelAdmin):
     search_fields = [ "username" ]
