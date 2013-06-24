@@ -10,7 +10,7 @@
 {% for ticket in tickets %}
 	<div class="container">
 		<div class="header"> <a href="{% url 'showUser' ticket.user %}"> {{ ticket.user }} </a> made for <a href="{% url 'showProject' ticket.project %}">{{ ticket.project }} </a></b> requested by <a href="{% url 'showRequestUser' ticket.requested_by_id %}"> {{ ticket.requested_by }} </a> at {{ ticket.created_at|date:'d.m.Y H:i' }} </div>
-		<div class="content"><label id="content_label">{{ ticket.content|linebreaks }} </label></div>
+		<div class="content"><label id="content_label"> {% if ticket.content|length < 200 %}  {{ ticket.content|linebreaks }} {% else %} {{ ticket.content|slice:":200"|linebreaks }} <hr> <a href="#">Read More</a> {% endif %}</label></div>
 	</div>
 {% endfor %}
 {% else %}

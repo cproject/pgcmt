@@ -22,8 +22,10 @@
         <li><a href="/create/requestUser/">Create Responsible</a> </li>
         <li><a href="/projects/">List Projects</a> <br></li>
         <hr>
-        {% if username %}
-         {{ username }} | <a href="/logout/">Logout</a>
+        {% if user.username %}
+            {% ifnotequal user.username "AnonymousUser" %}
+                {{ user.username }} | <a href="/logout/">Logout</a>
+            {% endifnotequal %}
         {% else %}
         <li><a href="/login/">Login</a></li>
         {% endif %}

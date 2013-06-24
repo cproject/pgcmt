@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     tickets = Ticket.objects.all().order_by("-id")
     search_form = SearchTicketForm()
-    return render_to_response("ticket/index.html",{'tickets':tickets,'search_form':search_form,'title':'All Tickets','username':request.user})
+    return render_to_response("ticket/index.html",{'tickets':tickets,'search_form':search_form,'title':'All Tickets','user':request.user})
 
 @login_required
 def createProject(request):
@@ -22,7 +22,7 @@ def createProject(request):
             tickets = Ticket.objects.all()
             return HttpResponseRedirect("/projects/")
     else:
-        return render(request,"ticket/create_project.html",{'form':form,'title':'Create Project','username':request.user})
+        return render(request,"ticket/create_project.html",{'form':form,'title':'Create Project','user':request.user})
 
 @login_required
 def createTicket(request):
@@ -38,7 +38,7 @@ def createTicket(request):
             ticket.save()
             return HttpResponseRedirect("/")
     else:
-        return render(request,"ticket/create_ticket.html",{'form':form,'title':'Create Ticket','username':request.user})
+        return render(request,"ticket/create_ticket.html",{'form':form,'title':'Create Ticket','user':request.user})
 
 @login_required
 def createRequestUser(request):
@@ -54,13 +54,13 @@ def createRequestUser(request):
 
 def listProjects(request):
     projects = Project.objects.all().order_by("name")
-    return render_to_response("ticket/show_projects.html",{'projects':projects,'title':'Project List','username':request.user})
+    return render_to_response("ticket/show_projects.html",{'projects':projects,'title':'Project List','user':request.user})
 
 def showProject(request,project_name):
     project = Project.objects.get(name=project_name)
     tickets = Ticket.objects.filter(project=project).order_by("-id")
     search_form = SearchTicketForm(initial={'project_id':project})
-    return render_to_response("ticket/index.html",{'tickets':tickets,'search_form':search_form,'title':project_name+" Project",'username':request.user})
+    return render_to_response("ticket/index.html",{'tickets':tickets,'search_form':search_form,'title':project_name+" Project",'user':request.user})
 
 def searchTicket(request):
     if len(request.GET["project_id"]) > 0:
@@ -70,14 +70,14 @@ def searchTicket(request):
         tickets = Ticket.objects.filter(content__icontains=request.GET["query"]).order_by("-id")
         project = "all"
     search_form = SearchTicketForm(request.GET)
-    return render_to_response("ticket/index.html",{'tickets':tickets,'search_form':search_form,'title':'Search for ' + request.GET["query"] + ' in ' + project,'username':request.user })
+    return render_to_response("ticket/index.html",{'tickets':tickets,'search_form':search_form,'title':'Search for ' + request.GET["query"] + ' in ' + project,'user':request.user })
 
 
 def showUser(request,username):
     tickets = Ticket.objects.filter(user=User.objects.filter(username=username)).order_by("-id")
-    return render_to_response("ticket/index.html",{'tickets':tickets,'title':'Tickets done by ' + username,'username':request.user })
+    return render_to_response("ticket/index.html",{'tickets':tickets,'title':'Tickets done by ' + username,'user':request.user })
 
 def showRequestUser(request,requestuser_id):
     requestUser = RequestUser.objects.get(id=requestuser_id)
     tickets = Ticket.objects.filter(requested_by=requestuser_id).order_by("-id")
-    return render_to_response("ticket/index.html",{'tickets':tickets,'title':'Tickets requested by ' + requestUser.username,'username':request.user })
+    return render_to_response("ticket/index.html",{'tickets':tickets,'title':'Tickets requested by ' + requestUser.username,'user':request.user })
