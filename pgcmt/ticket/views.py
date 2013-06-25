@@ -4,11 +4,17 @@ from ticket.models import Ticket,Project,RequestUser
 from ticket.forms import CreateProjectForm, CreateTicketForm, SearchTicketForm, CreateRequestUser
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.utils import timesince
+from django.template.defaultfilters import slugify as slugify_original
+
+def slugify(value):
+    value = value.replace(u'\u0131', 'i')
+    return slugify_original(value)
 
 def home(request):
     tickets = Ticket.objects.all().order_by("-id")
     search_form = SearchTicketForm()
-    return render_to_response("ticket/index.html",{'tickets':tickets,'search_form':search_form,'title':'All Tickets','user':request.user})
+    return render_to_response("ticket/index.html",{'tickets':tickets,'search_form':search_form,'title':'All Tickets','user':request.})
 
 @login_required
 def createProject(request):
