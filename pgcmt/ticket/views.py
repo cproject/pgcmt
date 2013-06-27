@@ -14,7 +14,7 @@ def slugify(value):
 def home(request):
     tickets = Ticket.objects.all().order_by("-id")
     search_form = SearchTicketForm()
-    return render_to_response("ticket/index.html",{'tickets':tickets,'search_form':search_form,'title':'All Tickets','user':request.})
+    return render_to_response("ticket/index.html",{'tickets':tickets,'search_form':search_form,'title':'All Tickets','user':request.user})
 
 @login_required
 def createProject(request):
