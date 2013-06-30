@@ -62,8 +62,12 @@ a
     background:#bfc6cf;
     border-top-right-radius:5px;
     border-top-left-radius:5px;
+<<<<<<< HEAD
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
+=======
+    font-family: Arial,Helvetica,sans-serif;
+>>>>>>> adad66d7cb3b1d0b2ed18dd7b994198f81feb456
 }
 .header a 
 {
@@ -98,9 +102,18 @@ a
     margin:10px;
     width: auto;
     height: auto;
+<<<<<<< HEAD
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     line-height: 140%;
+=======
+    font-family: arial;
+    font-family:"Lucida Grande",Verdana,Arial;
+    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
+    font-size:16px;
+    font-family: Arial,Helvetica,sans-serif;
+    line-height: 1.3;
+>>>>>>> adad66d7cb3b1d0b2ed18dd7b994198f81feb456
 }
 
 .container_project

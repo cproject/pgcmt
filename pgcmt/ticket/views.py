@@ -4,6 +4,12 @@ from ticket.models import Ticket,Project,RequestUser
 from ticket.forms import CreateProjectForm, CreateTicketForm, SearchTicketForm, CreateRequestUser
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.utils import timesince
+from django.template.defaultfilters import slugify as slugify_original
+
+def slugify(value):
+    value = value.replace(u'\u0131', 'i')
+    return slugify_original(value)
 
 from django.utils import simplejson
 
