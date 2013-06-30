@@ -15,9 +15,9 @@ a
 {
     float: left;
     list-style: none;
-    
     width: auto;
     height: auto;
+
     
 }
 .mainMenu ul
@@ -26,9 +26,14 @@ a
     margin:10px; 
     padding:0;
 }
+.mainMenu ul li a {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
 .mainMenu ul li 
 {
     padding-top: 3px;
+
 }
 .bodyContent 
 {
@@ -43,6 +48,7 @@ a
     height:auto;
     margin-bottom:15px;
     border: none;
+
 }
 .header 
 {
@@ -54,28 +60,27 @@ a
     padding:10px 0 10px 0;
     float:left;
     background:#bfc6cf;
-    font-family: arial;
-    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
-    font-family:"Lucida Grande",Verdana,Arial;
     border-top-right-radius:5px;
     border-top-left-radius:5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
 }
 .header a 
 {
     text-decoration: none;
     color: #00386b;
     font-weight:bold;
-    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
-    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
 }
 .header a:hover
 {
-    color:#000;
+    text-decoration: underline;
 }
 .content 
 {
     float:left;
-    padding:0;
+    padding:0 0 10px 0;
     background:#ccc;
     width:100%; 
     height:auto;
@@ -83,8 +88,9 @@ a
     margin: 0;
     margin-bottom: 10px;
     font-size: 14px;
-        border-bottom-left-radius:5px;
+    border-bottom-left-radius:5px;
     border-bottom-right-radius:5px;
+
     
 }
 #content_label p
@@ -92,10 +98,9 @@ a
     margin:10px;
     width: auto;
     height: auto;
-    font-family: arial;
-    font-family:"Lucida Grande",Verdana,Arial;
-    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
-    font-size:16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 140%;
 }
 
 .container_project
@@ -259,5 +264,70 @@ h1
     color: #00386b;
     margin:0 0 10px 0;
     font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
-
 }
+
+
+
+
+
+/* box */
+
+#uyari {
+    background-image: url('../images/bilgilendirme.png');
+    background-repeat: no-repeat;
+    width: 365px;
+    height: 46px;
+    color: #4f4d30;
+    text-shadow: 1px 1px #ffffff;
+    font-size: 9pt;
+    padding-left: 55px;
+    margin-bottom: 20px;
+}
+#hata {
+    background-image: url('../images/bilgilendirme.png');
+    background-repeat: no-repeat;
+    background-position: 0px -46px;
+    width: 365px;
+    height: 46px;
+    color: #9c394b;
+    text-shadow: 1px 1px #ededed;
+    font-size: 9pt;
+    padding-left: 55px;
+    margin-bottom: 20px;
+}
+#basarili {
+    background-image: url('../images/bilgilendirme.png');
+    background-repeat: no-repeat;
+    background-position: 0px -92px;
+    width: 365px;
+    height: 46px;
+    color: #535d3a;
+    text-shadow: 1px 1px #ededed;
+    font-size: 9pt;
+    padding-left: 55px;
+    margin-bottom: 20px;
+}
+.baslik {
+    font-size: 10pt;
+    font-weight: bold;
+    padding: 5px 0px 4px 0px;;
+}
+.kapat {
+    position: absolute;
+    margin-left: 292px;
+    padding-top: 5px;
+    font-weight: bold;
+    font-family: Tahoma;
+    font-size: 10px;
+    cursor: pointer;
+}
+.ku {
+    color: #ecd17f;
+}
+.kh {
+    color: #ff92a0;
+}
+.kb {
+    color: #bdd19a;
+}
+/* box */
