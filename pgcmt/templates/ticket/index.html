@@ -9,7 +9,6 @@
 {% if tickets|length > 0 %}
 {% for ticket in tickets %}
 	<div class="container">
-<<<<<<< HEAD
 		<div class="header"> <a href="{% url 'showUser' ticket.user %}"> {{ ticket.user }}</a> made for <a href="{% url 'showProject' ticket.project %}">{{ ticket.project }}</a></b> requested by <a href="{% url 'showRequestUser' ticket.requested_by_id %}"> {{ ticket.requested_by }}</a> | <label title="{{ ticket.created_at|date:"d-m-Y H:i" }}" >{{ ticket.created_at|timesince }} ago </label> </div>
 		<div class="content"><label id="content_label"> 
 			{% if not fullView %} 
@@ -22,10 +21,6 @@
 			{% else %}
 				{{ ticket.content|linebreaks }}
 			{% endif %}</label></div>
-=======
-		<div class="header"> <a href="{% url 'showUser' ticket.user %}"> {{ ticket.user }} </a> made for <a href="{% url 'showProject' ticket.project %}">{{ ticket.project }} </a></b> requested by <a href="{% url 'showRequestUser' ticket.requested_by_id %}"> {{ ticket.requested_by }} </a> | <label title="{{ ticket.created_at|date:"d-m-Y H:i" }}" >{{ ticket.created_at|timesince }} ago </label> </div>
-		<div class="content"><label id="content_label"> {% if ticket.content|length < 200 %}  {{ ticket.content|linebreaks }} {% else %} {{ ticket.content|slice:":200"|linebreaks }} <hr> <a href="#">Read More</a> {% endif %}</label></div>
->>>>>>> adad66d7cb3b1d0b2ed18dd7b994198f81feb456
 	</div>
 {% endfor %}
 {% else %}

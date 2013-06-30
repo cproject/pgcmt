@@ -37,17 +37,16 @@ def createProject(request):
 def createProjectAjax(request):
     if request.is_ajax():
         form = CreateProjectForm(request.POST)
-        print request
         if form.is_valid():
             project = Project()
             project.name = form.cleaned_data["name"]
             project.save()
             tickets = Ticket.objects.all()
-            response = {'result':'ok'}
-            return HttpResponse(simplejson.dumps(response), content_type='application/json')
+            response = 1
+            return HttpResponse(response)
         else:
-            response = {'result':'not ok'}
-            return HttpResponse(simplejson.dumps(response), content_type='application/json')
+            response = -1
+            return HttpResponse(response)
 
 @login_required
 def createTicket(request):
@@ -62,6 +61,8 @@ def createTicket(request):
             ticket.requested_by = RequestUser.objects.get(username=form.cleaned_data["requested_by_id"])
             ticket.save()
             return HttpResponseRedirect("/")
+        else:
+            return render(request,"ticket/create_ticket.html",{'form':form,'title':'Create Ticket','user':request.user})    
     else:
         return render(request,"ticket/create_ticket.html",{'form':form,'title':'Create Ticket','user':request.user})
 
@@ -74,8 +75,11 @@ def createRequestUser(request):
             requestUser.username = form.cleaned_data["name"]
             requestUser.save()
             return HttpResponseRedirect("/")
+        else:
+            pass
     else:
-        return render(request,"ticket/create_requestuser.html",{'form':form,'username':request.user,'title':'Create Responsible'})
+            pass
+    return render(request,"ticket/create_requestuser.html",{'form':form,'username':request.user,'title':'Create Responsible'})
 
 def listProjects(request):
     projects = Project.objects.all().order_by("name")
