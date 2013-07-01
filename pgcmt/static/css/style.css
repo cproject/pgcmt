@@ -179,7 +179,7 @@ a
     color:#00386b;
     font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
 }
-.create_project_form input[type=submit] {
+.create_project_form input[type=submit], input[type=button] {
     height: 30px;
     width: 150px;
     border: none;
@@ -238,7 +238,7 @@ a
     background: #bfc6cf;
     margin-bottom: 5px;
 }
-.create_form input[type=submit] 
+.create_form input[type=submit] , input[type=button]
 {
     height: 30px;
     width: 150px;

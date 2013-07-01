@@ -46,6 +46,7 @@ def createProjectAjax(request):
             return HttpResponse(response)
         else:
             response = -1
+            #return HttpResponse("Form is invalid.")
             return HttpResponse(response)
 
 @login_required
