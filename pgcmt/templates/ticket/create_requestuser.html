@@ -1,16 +1,76 @@
+<script type="text/javascript">
+
+function controlButton(attribute,value,status)
+{
+     if (status == "ENABLE")
+    {
+        $(attribute).attr("disabled",false);
+        $(attribute).css("background","#00386b");
+        $(attribute).val("Create");
+    }
+    else if (status == "DISABLE")
+    {
+        $(attribute).attr("disabled",true);
+        $(attribute).css("background","#999");
+        $(attribute).val("waiting");
+    }
+    else
+        alert("false status");
+}
+function resetVal(itemList)
+{
+    $(itemList).val(null);
+}
+
+function submitForm()
+{  
+        $.ajax({
+            type: "POST",
+            url: $("#createResponsibleForm").attr("action"),
+            data: $("#createResponsibleForm").serialize(),
+            dataType: "json",
+            beforeSend: function() {
+               controlButton("#sendButton","Create","DISABLE");
+                $("#status").hide();
+            },
+            success: function(response,code) {
+
+                controlButton("#sendButton","Create","ENABLE");
+                if(response.result=="true")
+                {
+                    $("#status").show().html('<div id="basarili"> <div class="baslik"> '+ response.message +' </div></div>');
+                    resetVal("#id_username");
+                }
+                else
+                {
+                    $("#status").show().html('<div id="hata"> <div class="baslik"> '+ response.message +' </div></div>');
+                }
+            },
+            error: function(jqXHR, textStatus, errorMessage) {
+                controlButton("#sendButton","Create","ENABLE");
+                $("#status").show().html('<div id="hata"> <div class="baslik">'+errorMessage+'</div> </div>');
+            }
+        });  
+}
+</script>
+
 {% extends "base.html" %}  
 
 
 {% block content %}
 <h1>Create Responsible</h1>
 <table class="create_form">
-    <form action="." method="post">{% csrf_token %}
+    <form action="." method="post" id="createResponsibleForm">{% csrf_token %}
     {{ form.as_table }}
     <tr>
     	<td> </td>
-        <td> <input type="submit" value="Create" /> </td>
+        <td> <input type="button" value="Create" id="sendButton" style="width:200px;height:30px" onclick="submitForm()"/> </td>
     </tr>
     </form>
+    <tr>
+        <td></td>
+        <td><div id="status" style=""> </div></td>
+    </tr>
 </table>
 
 {% endblock %}

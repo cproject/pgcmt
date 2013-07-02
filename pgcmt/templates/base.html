@@ -3,6 +3,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/defaults.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
     <title>{{ title }}</title>
+    <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.2.js'></script>
 </head>
 <body>
 
@@ -23,6 +24,13 @@
         {% else %}
         <li><a href="/login/">Login</a></li>
         {% endif %}
+    </ul>
+    <ul class"mainMenu" style="margin-top:40px;">
+        <center><label>Projects</label></center>
+        {% for project in projects %}
+        <li style="width:150px; font-size:20px;"><a href="{% url 'showProject' project.name %}">{{ project }}</a></li>
+        {% endfor %}
+        {% block projects %} {% endblock %}
     </ul>
 </div>
 <center>

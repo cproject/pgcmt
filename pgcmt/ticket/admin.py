@@ -6,6 +6,7 @@ class TicketAdmin(admin.ModelAdmin):
     search_fields = ["content"]
     list_display = ('project','user','content','created_at')
     list_filter = ['created_at']
+    fields = [ 'content' ]
 
 
 class ProjectAdmin(admin.ModelAdmin):
@@ -16,6 +17,7 @@ class ProjectAdmin(admin.ModelAdmin):
 class RequestUserAdmin(admin.ModelAdmin):
     search_fields = [ "username" ]
     list_display = [ "username","created_at" ]
+    fields = [ "username" ]
 
 admin.site.register(Ticket,TicketAdmin)
 admin.site.register(Project,ProjectAdmin)

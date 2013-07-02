@@ -5,7 +5,7 @@ from datetime import datetime
 class Project(models.Model):
     name = models.CharField(max_length=50)
     created_at = models.DateTimeField(default=datetime.now)
-    description = models.CharField(max_length=250,help_text="Deneme")
+    description = models.CharField(max_length=250)
     def __unicode__(self):
     	return self.name
 
