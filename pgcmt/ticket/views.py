@@ -1,11 +1,12 @@
 # Create your views here.
-from django.shortcuts import render_to_response, render,HttpResponseRedirect, HttpResponse
+from django.shortcuts import render_to_response, render,HttpResponseRedirect, HttpResponse, get_object_or_404
 from ticket.models import Ticket,Project,RequestUser
 from ticket.forms import CreateProjectForm, CreateTicketForm, SearchTicketForm, CreateRequestUser
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils import timesince
 from django.template.defaultfilters import slugify as slugify_original
+
 
 def slugify(value):
     value = value.replace(u'\u0131', 'i')
@@ -46,10 +47,9 @@ def createTicket(request):
         if form.is_valid():
             ticket = form.save(commit=False)
             ticket.user = request.user
-            ticket.save();
-            print ticket.project
+            ticket = ticket.save();
             if request.is_ajax():
-                response = {'result':'true','message':'Project created.','data':{'project':ticket.project.__str__(),'content':ticket.content.__str__()}}
+                response = {'result':'true','message':'Project created.'}
                 return HttpResponse(simplejson.dumps(response),mimetype="application/json");
             return HttpResponseRedirect("/")
         else:
@@ -115,5 +115,21 @@ def showTicket(request,ticketId):
 
     return render_to_response("ticket/index.html",{'tickets':ticket,'title':'Ticket ','fullView':True,'projects':getProjectList()})
 
-
+def editTicket(request,ticketId):
+    ticket = get_object_or_404(Ticket,id=ticketId)
+    form = CreateTicketForm(request.POST or None,instance=ticket)
+    if request.method == 'GET':
+        return render(request,"ticket/create_ticket.html",{'form':form,'title':'Edit Ticket','user':request.user,'projects':getProjectList()})    
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            if request.is_ajax():
+                response = {'result':'true','message':'Ticket has changed.','redirect':'/show/ticket/'+ticketId}
+                return HttpResponse(simplejson.dumps(response),mimetype="application/json");
+            return HttpResponseRedirect("/show/ticket/" + ticketId)
+        else:
+            if request.is_ajax():
+                response = {'result':'false','message':'Form is invalid.'}
+                return HttpResponse(simplejson.dumps(response),mimetype="application/json");
+            return render(request,"ticket/create_ticket.html",{'form':form,'title':'Edit Ticket','user':request.user,'projects':getProjectList()})       
 

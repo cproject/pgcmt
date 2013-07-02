@@ -28,7 +28,7 @@
     <ul class"mainMenu" style="margin-top:40px;">
         <center><label>Projects</label></center>
         {% for project in projects %}
-        <li style="width:150px; font-size:20px;"><a href="{% url 'showProject' project.name %}">{{ project }}</a></li>
+        <li style="width:150px; font-size:20px;"><a href="{% url 'ShowProject' project.name %}">{{ project }}</a></li>
         {% endfor %}
         {% block projects %} {% endblock %}
     </ul>

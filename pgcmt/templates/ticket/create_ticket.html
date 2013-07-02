@@ -6,7 +6,7 @@ function controlButton(attribute,value,status)
     {
         $(attribute).attr("disabled",false);
         $(attribute).css("background","#00386b");
-        $(attribute).val("Create");
+        $(attribute).val(value);
     }
     else if (status == "DISABLE")
     {
@@ -22,33 +22,40 @@ function resetVal(itemList)
     $(itemList).val(null);
 }
 
-function submitForm()
+function submitForm(form,button,result)
 {  
+    var form = form;
+    var buttonValue = button.value;
         $.ajax({
-            type: "POST",
-            url: $("#createTicketForm").attr("action"),
-            data: $("#createTicketForm").serialize(),
+            type: $(form).attr("method"),
+            url: $(form).attr("action"),
+            data: $(form).serialize(),
             dataType: "json",
             beforeSend: function() {
-               controlButton("#sendButton","Create","DISABLE");
-                $("#status").hide();
+               controlButton("#"+button.id,buttonValue,"DISABLE");
+                $(result).hide();
             },
             success: function(response,code) {
-
-                controlButton("#sendButton","Create","ENABLE");
                 if(response.result=="true")
                 {
-                    $("#status").show().html('<div id="basarili"> <div class="baslik"> '+ response.message +' </div></div>');
-                    resetVal("#id_content, #id_project, #id_requested_by");
+                    $(result).show().html('<div id="basarili"> <div class="baslik"> '+ response.message +' </div></div>');
+                    if (response.redirect == null)
+                    {
+                        resetVal("#id_content, #id_project, #id_requested_by");
+                        controlButton("#"+button.id,buttonValue,"ENABLE");
+                    }
+                    else
+                        window.location= (response.redirect);
                 }
                 else
                 {
-                    $("#status").show().html('<div id="hata"> <div class="baslik"> '+ response.message +' </div></div>');
+                    $(result).show().html('<div id="hata"> <div class="baslik"> '+ response.message +' </div></div>');
+                    controlButton("#"+button.id,buttonValue,"ENABLE");
                 }
             },
             error: function(jqXHR, textStatus, errorMessage) {
-                controlButton("#sendButton","Create","ENABLE");
-                $("#status").show().html('<div id="hata"> <div class="baslik">'+errorMessage+'</div> </div>');
+                controlButton("#"+button.id,"Create","ENABLE");
+                $(result).show().html('<div id="hata"> <div class="baslik">'+errorMessage+'</div> </div>');
             }
         });  
 }
@@ -58,14 +65,14 @@ function submitForm()
 
 
 {% block content %}
-<h1>Create Ticket</h1>
+<h1>{{ title }}</h1>
 <table class="create_form"> 
     <form action="." method="post" id="createTicketForm">{% csrf_token %}
     {{ form.as_table }}
     <tr>
     	<td> </td>
         <!--<td> <input type="submit" value="Create" /> </td>-->
-        <td> <input type="button" value="Create" id="sendButton" style="width:200px;height:30px" onclick="submitForm()"/> </td>
+        <td> <input type="button" value="{{ title }}" id="sendButton" style="width:200px;height:30px" onclick="submitForm('#createTicketForm',this,'#status')"/> </td>
     </tr>
     </form>
     <tr>

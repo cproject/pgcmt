@@ -6,7 +6,7 @@ function controlButton(attribute,value,status)
     {
         $(attribute).attr("disabled",false);
         $(attribute).css("background","#00386b");
-        $(attribute).val("Create");
+        $(attribute).val(value);
     }
     else if (status == "DISABLE")
     {
@@ -56,17 +56,17 @@ function submitForm()
 
 </script>
 
-{% extends "base.html" %}  
+{% extends "base.html" %}
 
 {% block content %}
-<h1>Create Project</h1>
+<h1>{{ title }}</h1>
 <table class="create_form">
 
     <form action="." method="post" id="createProjectForm">{% csrf_token %}
     {{ form.as_table }}
     <tr>
         <td> </td>
-        <td> <input type="button" value="Create" id="sendButton" style="width:200px;height:30px" onclick="submitForm()"/> </td>
+        <td> <input type="button" value="{{ title }}" id="sendButton" style="width:200px;height:30px" onclick="submitForm()"/> </td>
     </tr>
     <tr>
         <td></td>
