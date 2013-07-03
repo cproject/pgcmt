@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils import timesince
 from django.template.defaultfilters import slugify as slugify_original
+from django.core.urlresolvers import reverse
+
+
 
 
 def slugify(value):
@@ -47,11 +50,11 @@ def createTicket(request):
         if form.is_valid():
             ticket = form.save(commit=False)
             ticket.user = request.user
-            ticket = ticket.save();
+            ticket.save();
             if request.is_ajax():
-                response = {'result':'true','message':'Project created.'}
+                response = {'result':'true','message':'Ticket created.','redirect': reverse("ShowTicket",args=(str(ticket.id),) ) }
                 return HttpResponse(simplejson.dumps(response),mimetype="application/json");
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect(reverse("ShowTicket",args=(str(ticket.id),)) )
         else:
             if request.is_ajax():
                 response = {'result':'false','message':'Form is invalid.'}
@@ -68,7 +71,7 @@ def createRequestUser(request):
         if form.is_valid():
             form.save()
             if request.is_ajax():
-                response = {'result':'true','message':'Project created.'}
+                response = {'result':'true','message':'User created.'}
                 return HttpResponse(simplejson.dumps(response),mimetype="application/json");
             return HttpResponseRedirect("/")
         else:
@@ -113,7 +116,7 @@ def showRequestUser(request,requestuser_id):
 def showTicket(request,ticketId):
     ticket = Ticket.objects.filter(id=ticketId)
 
-    return render_to_response("ticket/index.html",{'tickets':ticket,'title':'Ticket ','fullView':True,'projects':getProjectList()})
+    return render_to_response("ticket/index.html",{'tickets':ticket,'title':'Ticket ','fullView':True,'user':request.user,'projects':getProjectList()})
 
 def editTicket(request,ticketId):
     ticket = get_object_or_404(Ticket,id=ticketId)
@@ -124,9 +127,9 @@ def editTicket(request,ticketId):
         if form.is_valid():
             form.save()
             if request.is_ajax():
-                response = {'result':'true','message':'Ticket has changed.','redirect':'/show/ticket/'+ticketId}
+                response = {'result':'true','message':'Ticket has changed.','redirect':reverse("ShowTicket",args=(ticketId,))}
                 return HttpResponse(simplejson.dumps(response),mimetype="application/json");
-            return HttpResponseRedirect("/show/ticket/" + ticketId)
+            return HttpResponseRedirect( reverse("ShowTicket",args=(ticketId,)) )
         else:
             if request.is_ajax():
                 response = {'result':'false','message':'Form is invalid.'}

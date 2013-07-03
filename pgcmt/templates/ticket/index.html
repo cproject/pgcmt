@@ -2,10 +2,11 @@
 
 
 {% block content %}
-<form action="/search/" method="GET">
+<form action="/search/" method="GET" id="searchForm">
 {{  search_form.as_table }}
 </form>
 <br>
+
 {% if tickets|length > 0 %}
 {% for ticket in tickets %}
 	<div class="container">
