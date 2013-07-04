@@ -67,8 +67,9 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-     '/Users/travijuu/Coding/github/pgcmt/pgcmt/static',
-    #'/home/travego/repos/pgcmt/pgcmt/static',
+    #'/Users/travijuu/Coding/github/pgcmt/pgcmt/static',
+    '/home/travego/repos/pgcmt/pgcmt/static',
+    #'/srv/pgcmt/project/pgcmt/static'
 )
 
 # List of finder classes that know how to find static files in
@@ -108,8 +109,9 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-     '/Users/travijuu/Coding/github/pgcmt/pgcmt/templates'
-    #'/home/travego/repos/pgcmt/pgcmt/templates'
+    # '/Users/travijuu/Coding/github/pgcmt/pgcmt/templates'
+    '/home/travego/repos/pgcmt/pgcmt/templates'
+    #'/srv/pgcmt/project/pgcmt/templates'
 )
 
 INSTALLED_APPS = (

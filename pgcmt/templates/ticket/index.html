@@ -13,10 +13,10 @@
 		<div class="header"> <span><a href="{% url 'ShowUser' ticket.user %}"> {{ ticket.user }}</a> made for <a href="{% url 'ShowProject' ticket.project %}">{{ ticket.project }}</a></b> requested by <a href="{% url 'ShowRequestUser' ticket.requested_by_id %}"> {{ ticket.requested_by }}</a> | <label title="{{ ticket.created_at|date:"d-m-Y H:i" }}" >{{ ticket.created_at|timesince }} ago </label></span> <a href="{% url 'EditTicket' ticket.id %}" style="float:right;padding-right:10px;color:green">[edit]</a></div>
 		<div class="content"><label id="content_label"> 
 			{% if not fullView %} 
-				{% if ticket.content|length < 200 %}
+				{% if ticket.content|length < 1000 %}
 					{{ ticket.content|linebreaks }} 
 				{% else %} 
-					{{ ticket.content|slice:":200"|linebreaks }} 
+					{{ ticket.content|slice:":1000"|linebreaks }} 
 					<hr> <a href="{% url 'ShowTicket' ticket.id %}" style="padding-left:10px;">Read More » </a> 
 			{% endif %}
 			{% else %}
