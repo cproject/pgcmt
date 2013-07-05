@@ -9,6 +9,9 @@ from django.core.urlresolvers import reverse
 from django.utils import simplejson
 from django.db.models import Count
 
+
+URL_CREATE_REQUEST_USER="ticket/create_requestuser.html"
+
 def slugify(value):
     value = value.replace(u'\u0131', 'i')
     return slugify_original(value)
@@ -60,7 +63,7 @@ def createTicket(request):
 def createRequestUser(request):
     form = CreateRequestUser(request.POST or None)
     if request.method == 'GET':
-        return render(request,"ticket/create_requestuser.html",{'form':form,'username':request.user,'title':'Create Responsible','projects':getProjectList()})    
+        return render(request,URL_CREATE_REQUEST_USER,{'form':form,'username':request.user,'title':'Create Responsible','projects':getProjectList()})    
     elif request.method == 'POST':
         if form.is_valid():
             form.save()
@@ -72,7 +75,7 @@ def createRequestUser(request):
             if request.is_ajax():
                 response = {'result':'false','message':'Form is invalid.'}
                 return HttpResponse(simplejson.dumps(response),mimetype="application/json");
-            return render(request,"ticket/create_requestuser.html",{'form':form,'username':request.user,'title':'Create Responsible','projects':getProjectList()})    
+            return render(request,URL_CREATE_REQUEST_USER,{'form':form,'username':request.user,'title':'Create Responsible','projects':getProjectList()})    
 
 def getProjectList():
     return Project.objects.all().order_by("name").annotate(ticket_count=Count('ticket'))
@@ -115,7 +118,7 @@ def editTicket(request,ticketId):
     ticket = get_object_or_404(Ticket,id=ticketId)
     form = CreateTicketForm(request.POST or None,instance=ticket)
     if request.method == 'GET':
-        return render(request,"ticket/create_ticket.html",{'form':form,'title':'Edit Ticket','user':request.user,'projects':getProjectList()})    
+        return render(request,"ticket/create_ticket.html",{'form':form,'title':'Edit Ticket','user':request.user,'projects':getProjectList(),'ticketId':ticketId})    
     if request.method == 'POST':
         if form.is_valid():
             form.save()
@@ -127,5 +130,37 @@ def editTicket(request,ticketId):
             if request.is_ajax():
                 response = {'result':'false','message':'Form is invalid.'}
                 return HttpResponse(simplejson.dumps(response),mimetype="application/json");
-            return render(request,"ticket/create_ticket.html",{'form':form,'title':'Edit Ticket','user':request.user,'projects':getProjectList()})       
+            return render(request,"ticket/create_ticket.html",{'form':form,'title':'Edit Ticket','user':request.user,'projects':getProjectList(),'ticketId':ticketId})       
+
+def deleteTicket(request,ticketId):
+    ticket = get_object_or_404(Ticket,id=ticketId)
+    
+    if request.method == 'POST':
+        if request.is_ajax():
+            ticket.delete()        
+            response = { 'result':'true','message':'Ticket has deleted!' }
+            return HttpResponse(simplejson.dumps(response),mimetype="application/json");
+    else:
+        return render(request,"ticket/create_ticket.html",{'title':'Edit Ticket','user':request.user,'projects':getProjectList(),'ticketId':ticketId})       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

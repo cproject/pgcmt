@@ -9,7 +9,7 @@
     <tr>
     	<td> </td>
         <!--<td> <input type="submit" value="Create" /> </td>-->
-        <td> <input type="button" value="{{ title }}" id="sendButton" style="width:200px;height:30px" onclick="submitForm('#createTicketForm',this,'#status')"/> </td>
+        <td> <input type="button" value="{{ title }}" id="sendButton" style="width:200px;height:30px" onclick="submitForm('#createTicketForm',this,'#status')"/> <input type="button" value="Delete" id="deleteButton" style="width:100px;height:30px" onclick="deleteBox({{ ticketId }}, this )"/> </td>
     </tr>
     </form>
     <tr>

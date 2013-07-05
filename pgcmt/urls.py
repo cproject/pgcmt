@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^create/requestUser/$','ticket.views.createRequestUser',name='CreateRequestUser'),
 
     url(r'^edit/ticket/(?P<ticketId>\w+)/$','ticket.views.editTicket',name='EditTicket'),
+    url(r'^delete/ticket/$','ticket.views.deleteTicket',name='DeleteTicket'),
 
     url(r'^projects/$','ticket.views.listProjects',name='ListProjects'),
     url(r'^search/$','ticket.views.searchTicket',name='searchTicket'),

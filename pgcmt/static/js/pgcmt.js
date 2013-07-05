@@ -66,3 +66,32 @@ function submitForm(form,button,result)
         });  
 }
 
+function deleteBox(id,button)
+{
+	var buttonValue = button.value;
+    var result = confirm("Are you sure you want to delete this ticket?");
+    if (result == true )
+    {
+    	$.ajax({
+    		type: 'POST',
+    		url: '/delete/ticket/',
+    		data: { ticketId:id },
+    		dataType: 'json',
+    		beforeSend: function() {
+    			controlButton("#"+button.id,buttonValue,"DISABLE");
+    			alert("gidiyor");
+    		},
+    		success: function(response, code) {
+    			if (response.result == "true" )
+    				alert("deleted");
+    			else
+    				alert("not deleted");
+    			controlButton("#"+button.id,buttonValue,"ENABLE");
+    		},
+            error: function(jqXHR, textStatus, errorMessage) {
+    			alert("error" + textStatus + " " + errorMessage)
+    		}
+
+    	});
+    }
+}
