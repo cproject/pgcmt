@@ -9,19 +9,22 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'ticket.views.home', name='home'),
-    # url(r'^pgcmt/', include('foo.urls')),
-    url(r'^ticket/$','ticket.views.home',name='Home'),
+    url(r'^$', 'ticket.views.home', name='Home'),
+
+    url(r'^show/project/(?P<project_name>\w+)/$','ticket.views.showProject',name='ShowProject'),
     url(r'^show/ticket/(?P<ticketId>\w+)$','ticket.views.showTicket',name='ShowTicket'),
+    url(r'^show/user/(?P<username>\w+)/$','ticket.views.showUser',name='ShowUser'),
+    url(r'^show/requestuser/(?P<requestuser_id>\w+)/$','ticket.views.showRequestUser',name='ShowRequestUser'),
+    
     url(r'^create/project/$','ticket.views.createProject',name='CreateProject'),
     url(r'^create/ticket/$','ticket.views.createTicket',name='CreateTicket'),
     url(r'^create/requestUser/$','ticket.views.createRequestUser',name='CreateRequestUser'),
+
     url(r'^edit/ticket/(?P<ticketId>\w+)/$','ticket.views.editTicket',name='EditTicket'),
-    url(r'^projects/$','ticket.views.listProjects',name='Projects'),
+
+    url(r'^projects/$','ticket.views.listProjects',name='ListProjects'),
     url(r'^search/$','ticket.views.searchTicket',name='searchTicket'),
-    url(r'^project/(?P<project_name>\w+)/$','ticket.views.showProject',name='ShowProject'),
-    url(r'^user/(?P<username>\w+)/$','ticket.views.showUser',name='ShowUser'),
-    url(r'^requestuser/(?P<requestuser_id>\w+)/$','ticket.views.showRequestUser',name='ShowRequestUser'),
+
     url(r'^login/$','auth.views.check_login',name='Login'),
     url(r'^logout/$','auth.views.logout_view',name='Logout'),
     # Uncomment the admin/doc line below to enable admin documentation:

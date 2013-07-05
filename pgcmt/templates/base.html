@@ -13,18 +13,18 @@
 
 <div class="mainMenu">
     <ul>
-        <li><a href="/">Show All</a> </li>
-        <li><a href="/create/project/">Create Project</a> </li>
-        <li><a href="/create/ticket/">Create Ticket</a> </li>
-        <li><a href="/create/requestUser/">Create Responsible</a> </li>
-        <li><a href="/projects/">List Projects</a> <br></li>
+        <li><a href="{% url 'Home' %}">Show All</a> </li>
+        <li><a href="{% url 'CreateProject' %}">Create Project</a> </li>
+        <li><a href="{% url 'CreateTicket' %}">Create Ticket</a> </li>
+        <li><a href="{% url 'CreateRequestUser' %}">Create Responsible</a> </li>
+        <li><a href="{% url 'ListProjects' %}">List Projects</a> <br></li>
         <hr>
         {% if user.username %}
             {% ifnotequal user.username "AnonymousUser" %}
                 {{ user.username }} | <a href="/logout/">Logout</a>
             {% endifnotequal %}
         {% else %}
-        <li><a href="/login/">Login</a></li>
+        <li><a href="{% url 'Login' %}">Login</a></li>
         {% endif %}
     </ul>
     <ul class"mainMenu" style="margin-top:40px;">
