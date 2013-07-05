@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import slugify as slugify_original
 from django.core.urlresolvers import reverse
 from django.utils import simplejson
+from django.db.models import Count
 
 def slugify(value):
     value = value.replace(u'\u0131', 'i')
@@ -74,7 +75,7 @@ def createRequestUser(request):
             return render(request,"ticket/create_requestuser.html",{'form':form,'username':request.user,'title':'Create Responsible','projects':getProjectList()})    
 
 def getProjectList():
-    return Project.objects.all().order_by("name")
+    return Project.objects.all().order_by("name").annotate(ticket_count=Count('ticket'))
 
 def listProjects(request):
     projects = getProjectList()
@@ -94,7 +95,7 @@ def searchTicket(request):
         tickets = Ticket.objects.filter(content__icontains=request.GET["query"]).order_by("-id")
         project = "all"
     search_form = SearchTicketForm(request.GET)
-    return render_to_response("ticket/index.html",{'tickets':tickets,'search_form':search_form,'title':'Search for ' + request.GET["query"] + ' in ' + project,'user':request.user })
+    return render_to_response("ticket/index.html",{'tickets':tickets,'search_form':search_form,'title':'Search for ' + request.GET["query"] + ' in ' + project,'user':request.user,'projects':getProjectList() })
 
 def showUser(request,username):
     tickets = Ticket.objects.filter(user=User.objects.filter(username=username)).order_by("-id")

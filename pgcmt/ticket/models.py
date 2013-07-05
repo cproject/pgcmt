@@ -9,6 +9,7 @@ class Project(models.Model):
     def __unicode__(self):
     	return self.name
 
+
 class RequestUser(models.Model):
     username = models.CharField(max_length=50)
     created_at = models.DateTimeField(default=datetime.now)
