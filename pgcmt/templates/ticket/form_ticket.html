@@ -9,7 +9,11 @@
     <tr>
     	<td> </td>
         <!--<td> <input type="submit" value="Create" /> </td>-->
-        <td> <input type="button" value="{{ title }}" id="sendButton" style="width:200px;height:30px" onclick="submitForm('#createTicketForm',this,'#status')"/> <input type="button" value="Delete" id="deleteButton" style="width:100px;height:30px" onclick="deleteBox({{ ticketId }}, this )"/> </td>
+        <td> <input type="button" value="{{ title }}" id="sendButton" style="width:200px;height:30px" onclick="submitForm('#createTicketForm',this,'#status')"/> 
+           {% if title == "Edit Ticket" %} 
+            <input type="button" value="Delete" id="deleteButton" style="width:100px;height:30px" onclick="deleteBox({{ ticketId }}, this, '#status' )"/>
+            {% endif %} 
+       </td>
     </tr>
     </form>
     <tr>

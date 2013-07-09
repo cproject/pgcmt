@@ -1,11 +1,17 @@
-from auth.models import LoginForm
-from django.shortcuts import render_to_response, HttpResponseRedirect,render
+from auth.models import LoginForm, ChangePasswordForm
+from django.shortcuts import render_to_response, HttpResponseRedirect,render, get_object_or_404
 from django.contrib.auth import *
+from django.contrib.auth.models import User
 
 def check_login(request):
     def errorHandle(error):
         form = LoginForm()
-        return render(request,'auth/login.html', { 'error' : error, 'form' : form, 'title':'Login' })
+        context = { 
+            'error' : error, 
+            'form' : form, 
+            'title': 'Login' 
+            }
+        return render(request,'auth/login.html', context )
     if request.user.is_authenticated():
         username = request.user.username
         return HttpResponseRedirect("/")
@@ -39,7 +45,11 @@ def check_login(request):
             else:
                 next = "/"
             form = LoginForm(initial={'next':next}) # An unbound form
-            return render(request,'auth/login.html', { 'form': form, 'title':'Login','title':'Login' })
+            context = { 
+                'form': form, 
+                'title': 'Login'
+                }
+            return render(request,'auth/login.html', context )
 
 def logout_view(request):
     if request.user.is_authenticated():
@@ -49,3 +59,32 @@ def logout_view(request):
     else: 
         check_login(request)
         return HttpResponseRedirect('/')
+
+def changePassword(request):
+    if request.method == 'GET':
+        form = ChangePasswordForm()
+        context = { 
+                'form': form, 
+                'title': 'Change Password'
+                }
+        return render(request,'auth/changePassword.html', context )
+    else:
+        print request
+        form = ChangePasswordForm(request.POST)
+        if form.is_valid():
+            if request.POST["password"] == request.POST["password_check"]:
+                user = get_object_or_404(User,username=request.user)
+                user.set_password(request.POST["password"])
+                return HttpResponseRedirect('/')
+            else:
+                context = {
+                    'form': form, 
+                    'title': 'Change Password',
+                    'error': 'Password does not match!'
+                    }
+                return render(request,'auth/changePassword.html', context )
+        context = {
+            'form': form, 
+            'title': 'Change Password'
+            }
+    return render(request,'auth/changePassword.html', context )

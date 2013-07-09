@@ -11,6 +11,8 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'ticket.views.home', name='Home'),
 
+    url(r'^account/$','auth.views.changePassword',name='ChangePassword'),
+
     url(r'^show/project/(?P<project_name>\w+)/$','ticket.views.showProject',name='ShowProject'),
     url(r'^show/ticket/(?P<ticketId>\w+)$','ticket.views.showTicket',name='ShowTicket'),
     url(r'^show/user/(?P<username>\w+)/$','ticket.views.showUser',name='ShowUser'),

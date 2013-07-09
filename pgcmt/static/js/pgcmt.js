@@ -66,30 +66,40 @@ function submitForm(form,button,result)
         });  
 }
 
-function deleteBox(id,button)
+function getCookie(name) {
+  var parts = document.cookie.split(name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+function deleteBox(id,button,result)
 {
 	var buttonValue = button.value;
-    var result = confirm("Are you sure you want to delete this ticket?");
-    if (result == true )
+    var question = confirm("Are you sure you want to delete this ticket?");
+    if (question == true )
     {
     	$.ajax({
     		type: 'POST',
     		url: '/delete/ticket/',
-    		data: { ticketId:id },
+    		data: { ticketId:id, csrfmiddlewaretoken: getCookie("csrftoken") },
     		dataType: 'json',
     		beforeSend: function() {
     			controlButton("#"+button.id,buttonValue,"DISABLE");
-    			alert("gidiyor");
     		},
     		success: function(response, code) {
     			if (response.result == "true" )
-    				alert("deleted");
+                {
+                    $(result).show().html('<div id="basarili"> <div class="baslik"> '+ response.message +' </div></div>');
+                    if (response.redirect != null)
+                        window.location=(response.redirect);
+                }
     			else
-    				alert("not deleted");
-    			controlButton("#"+button.id,buttonValue,"ENABLE");
+    				 $(result).show().html('<div id="hata"> <div class="baslik"> '+ response.message +' </div></div>');
+
     		},
             error: function(jqXHR, textStatus, errorMessage) {
-    			alert("error" + textStatus + " " + errorMessage)
+    			alert( + textStatus + " " + errorMessage)
+                controlButton("#"+button.id,buttonValue,"ENABLE");
+                $(result).show().html('<div id="hata"> <div class="baslik">'+textStatus+'</div> </div>');
     		}
 
     	});
