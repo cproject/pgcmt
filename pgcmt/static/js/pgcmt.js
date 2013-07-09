@@ -14,13 +14,13 @@ function controlButton(attribute,value,status)
      if (status == "ENABLE")
     {
         $(attribute).attr("disabled",false);
-        $(attribute).css("background","#00386b");
+        //$(attribute).css("background","#00386b");
         $(attribute).val(value);
     }
     else if (status == "DISABLE")
     {
         $(attribute).attr("disabled",true);
-        $(attribute).css("background","#999");
+        //$(attribute).css("background","#999");
         $(attribute).val("waiting");
     }
     else
@@ -50,12 +50,11 @@ function submitForm(form,button,result)
                     $(result).show().html('<div id="basarili"> <div class="baslik"> '+ response.message +' </div></div>');
                     if (response.redirect == null)
                     	$(form).each (function(){ this.reset(); });
-
                     else
                         window.location=(response.redirect);
                 }
                 else
-                    $(result).show().html('<div id="hata"> <div class="baslik"> '+ response.message +' </div></div>');
+                    $(result).show().html('    <div class="alert alert-error"> '+ response.message+' </div>');
 
                 controlButton("#"+button.id,buttonValue,"ENABLE");
             },

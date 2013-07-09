@@ -4,13 +4,7 @@ body
     width: auto;
 }
 
-a 
-{
-    font-family:"Trebuchet MS",verdana,Ubuntu,sans-serif;
-    text-decoration: none;
-    color: #00186b;
-}
-
+ 
 .mainMenu
 {
     float: left;
@@ -145,7 +139,11 @@ a
     color: #00386b;
     width: 100%;
 }
-
+#id_project_id {
+    height: 30px;
+    margin-top:15px;
+    width: 150px;
+}
 #id_query
 {
     font-family:"Lucida Grande",Verdana,Arial;
@@ -158,6 +156,9 @@ a
     border-bottom-right-radius:5px;
     border-top-right-radius:5px;
     border-top-left-radius:5px;
+    height: 30px;
+    margin-top:15px;
+    width: 250px;
 }
 
 .create_project_form 
