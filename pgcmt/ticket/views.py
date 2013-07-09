@@ -162,28 +162,34 @@ def showProject(request,project_name):
         'search_form': search_form,
         'title': project_name+" Project",
         'user': request.user,
-        'projects': getProjectList()
+        'projects': getProjectList(),
+        'currentProject': project
         }
     return render_to_response( TEMPLATE_TICKET_LIST, context )
 
 def searchTicket(request):
-    if len(request.GET["project_id"]) > 0:
+    request_query = request.GET["query"]
+    request_project = request.GET["project"]
+    print "HEHEHE: " + request_project 
+    if  len(request_project) > 0 and request_project != 'ALL':
         tickets = Ticket.objects.filter(
-                            content__icontains=request.GET["query"], \
-                            project=request.GET["project_id"]) \
+                            content__icontains=request_query, \
+                            project=Project.objects.get(name=request_project) ) \
                                 .order_by("-id")
-        project = Project.objects.get(id=request.GET["project_id"]).__str__()
+        project = Project.objects.get(name=request_project).__str__()
     else:
-        tickets = Ticket.objects.filter(content__icontains=request.GET["query"]) \
+        tickets = Ticket.objects.filter(content__icontains=request_query) \
                                 .order_by("-id")
-        project = "all"
-    search_form = SearchTicketForm(request.GET)
+        project = "ALL"
+    form = SearchTicketForm()
     context = {
         'tickets': tickets,
-        'search_form': search_form,
+        'search_form': form,
         'title': 'Search for ' + request.GET["query"] + ' in ' + project,
         'user': request.user,
-        'projects': getProjectList() 
+        'projects': getProjectList(),
+        'query': request_query,
+        'currentProject': project
         }
     return render_to_response( TEMPLATE_TICKET_LIST, context )
 

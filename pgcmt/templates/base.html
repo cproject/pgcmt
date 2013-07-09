@@ -18,18 +18,10 @@
 <div class="row-fluid">
 <div class="span2">
     <div class="mainMenu">
-    <ul class="nav nav-list">
-    <li class="nav-header">MENU</li>
-        <li><a href="{% url 'Home' %}">Show All</a></li>
-        <li><a href="{% url 'CreateProject' %}">Create Project</a> </li>
-        <li><a href="{% url 'CreateTicket' %}">Create Ticket</a> </li>
-        <li><a href="{% url 'CreateRequestUser' %}">Create Responsible</a> </li>
-        <li><a href="{% url 'ListProjects' %}">List Projects</a></li>
-       <hr style="margin:10px">
         {% if user.username %}
             {% ifnotequal user.username "AnonymousUser" %}
                 <!--<a href="{% url 'ChangePassword' %}"> {{ user.username }} </a> | <a href="{% url 'Logout' %}">Logout</a>-->
-                    <div class="btn-group">
+                    <div class="btn-group" style="margin-left:10px">
                         <a class="btn btn-primary" href="{% url 'ShowUser' user.username %}"><i class="icon-user icon-white"></i> {{ user.username }}</a>
                         <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#" style="height:20px"><span class="caret" ></span></a>
                         <ul class="dropdown-menu">
@@ -44,6 +36,15 @@
         {% else %}
         <li><a href="{% url 'Login' %}">Login</a></li>
         {% endif %}
+    <ul class="nav nav-list">
+    <li class="nav-header">MENU</li>
+        <li><a href="{% url 'Home' %}">Show All</a></li>
+        <li><a href="{% url 'CreateProject' %}">Create Project</a> </li>
+        <li><a href="{% url 'CreateTicket' %}">Create Ticket</a> </li>
+        <li><a href="{% url 'CreateRequestUser' %}">Create Responsible</a> </li>
+        <li><a href="{% url 'ListProjects' %}">List Projects</a></li>
+       <hr style="margin:10px">
+        
     </ul>
     <ul class="nav nav-pills nav-stacked" style="margin-top:40px;">
         <li class="active"><a>Projects</a></li>

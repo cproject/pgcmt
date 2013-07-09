@@ -47,20 +47,20 @@ function submitForm(form,button,result)
             success: function(response,code) {
                 if(response.result=="true")
                 {
-                    $(result).show().html('<div id="basarili"> <div class="baslik"> '+ response.message +' </div></div>');
+                    $(result).show().html('<div class="alert alert-success">' + response.message + '</div>');
                     if (response.redirect == null)
                     	$(form).each (function(){ this.reset(); });
                     else
                         window.location=(response.redirect);
                 }
                 else
-                    $(result).show().html('    <div class="alert alert-error"> '+ response.message+' </div>');
+                    $(result).show().html('<div class="alert alert-error">' + response.message + '</div>');
 
                 controlButton("#"+button.id,buttonValue,"ENABLE");
             },
             error: function(jqXHR, textStatus, errorMessage) {
                 controlButton("#"+button.id,buttonValue,"ENABLE");
-                $(result).show().html('<div id="hata"> <div class="baslik">'+textStatus+'</div> </div>');
+                $(result).show().html('<div class="alert alert-error">' + textStatus + '</div>');
             }
         });  
 }
@@ -87,20 +87,28 @@ function deleteBox(id,button,result)
     		success: function(response, code) {
     			if (response.result == "true" )
                 {
-                    $(result).show().html('<div id="basarili"> <div class="baslik"> '+ response.message +' </div></div>');
+                    $(result).show().html('<div class="alert alert-success">' + response.message + '</div>');
                     if (response.redirect != null)
                         window.location=(response.redirect);
                 }
     			else
-    				 $(result).show().html('<div id="hata"> <div class="baslik"> '+ response.message +' </div></div>');
+    				 $(result).show().html('<div class="alert alert-error">' + response.message + '</div>');
 
     		},
             error: function(jqXHR, textStatus, errorMessage) {
-    			alert( + textStatus + " " + errorMessage)
                 controlButton("#"+button.id,buttonValue,"ENABLE");
-                $(result).show().html('<div id="hata"> <div class="baslik">'+textStatus+'</div> </div>');
+                $(result).show().html('<div class="alert alert-error">' + textStatus + '</div>');
     		}
 
     	});
     }
+}
+
+function select(option,project,form)
+{
+    $(project).html(option+"<span class='caret'></span>");
+    $("#project_id").val(option);
+    $(form).submit();
+
+
 }
