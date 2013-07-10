@@ -7,6 +7,15 @@
         $('#id_project_id').change(function() {
             $('#searchForm').submit();
         });
+
+
+    $("#appendedDropdownButton").keydown(function(event){
+        if(event.keyCode == 13){
+            $("#searchForm").submit();
+            event.preventDefault();
+        }
+    });
+
     });
 
 function controlButton(attribute,value,status)
@@ -109,6 +118,4 @@ function select(option,project,form)
     $(project).html(option+"<span class='caret'></span>");
     $("#project_id").val(option);
     $(form).submit();
-
-
 }

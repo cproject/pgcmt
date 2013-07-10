@@ -24,13 +24,13 @@
                 <li><a onclick="select( 'ALL','#projectName','#searchForm' )">ALL</a></li>
                 <li class="divider"></li>
             {% for project in projects %}
-                {% if project in currentProject %}
+                {% if currentProject in project %}
                 <li class="active"><a onclick="select( '{{ project }}','#projectName','#searchForm' )" name="project_id" >{{ project }}</a></li>
                 {% else %}
                 <li><a onclick="select( '{{ project }}','#projectName','#searchForm' )" name="project_id">{{ project }}</a></li>
                 {% endif %}
             {% endfor %} 
-                <input type="hidden" id="project_id" name="project" value=""/>
+                <input type="hidden" id="project_id" name="project" value="{{ currentProject }}"/>
             </ul>
         </div>
     </div>

@@ -170,8 +170,7 @@ def showProject(request,project_name):
 def searchTicket(request):
     request_query = request.GET["query"]
     request_project = request.GET["project"]
-    print "HEHEHE: " + request_project 
-    if  len(request_project) > 0 and request_project != 'ALL':
+    if len(request_project) > 0 and request_project != 'ALL':
         tickets = Ticket.objects.filter(
                             content__icontains=request_query, \
                             project=Project.objects.get(name=request_project) ) \
@@ -263,7 +262,6 @@ def editTicket(request,ticketId):
             return render( request, TEMPLATE_TICKET_FORM, context )
 
 def deleteTicket(request):
-    print request
     ticket = get_object_or_404(Ticket,id=request.POST["ticketId"])
     
     if request.method == 'POST':

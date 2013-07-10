@@ -75,6 +75,7 @@ def changePassword(request):
             if request.POST["password"] == request.POST["password_check"]:
                 user = get_object_or_404(User,username=request.user)
                 user.set_password(request.POST["password"])
+                user.save()
                 return HttpResponseRedirect('/')
             else:
                 context = {
