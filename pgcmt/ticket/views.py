@@ -225,6 +225,7 @@ def showTicket(request,ticketId):
         }
     return render_to_response( TEMPLATE_TICKET_LIST, context )
 
+@login_required
 def editTicket(request,ticketId):
     ticket = get_object_or_404(Ticket,id=ticketId)
     form = CreateTicketForm(request.POST or None,instance=ticket)
