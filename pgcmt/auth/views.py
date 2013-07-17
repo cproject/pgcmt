@@ -60,6 +60,7 @@ def logout_view(request):
         check_login(request)
         return HttpResponseRedirect('/')
 
+@login_required
 def changePassword(request):
     if request.method == 'GET':
         form = ChangePasswordForm()

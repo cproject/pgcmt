@@ -262,17 +262,24 @@ def editTicket(request,ticketId):
                 }
             return render( request, TEMPLATE_TICKET_FORM, context )
 
+@login_required
 def deleteTicket(request):
     ticket = get_object_or_404(Ticket,id=request.POST["ticketId"])
     
     if request.method == 'POST':
         if request.is_ajax():
-            ticket.delete()        
-            response = { 
-                'result':'true',
-                'message':'Ticket has deleted!' ,
-                'redirect': '/'
-                }
+            if ticket.user == request.user:
+                ticket.delete()
+                response = { 
+                    'result':'true',
+                    'message':'Ticket has deleted!' ,
+                    'redirect': '/'
+                    }
+            else:
+                response = { 
+                    'result':'false',
+                    'message':'This is not your ticket!' ,
+                    }
             return HttpResponse(simplejson.dumps(response),mimetype="application/json");
     else:
         context = {
@@ -282,8 +289,6 @@ def deleteTicket(request):
             'ticketId':request.POST.ticketId
             }
         return render( request, TEMPLATE_TICKET_FORM, context )
-
-
 
 
 
