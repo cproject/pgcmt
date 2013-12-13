@@ -8,7 +8,7 @@ from django.template.defaultfilters import slugify as slugify_original
 from django.core.urlresolvers import reverse
 from django.utils import simplejson
 from django.db.models import Count
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 TEMPLATE_REQUESTUSER_FORM = "ticket/form_requestuser.html"
@@ -24,8 +24,13 @@ def slugify(value):
 def home(request, page=1):
     
     tickets = Ticket.objects.all().order_by("-id")
-    paginator = Paginator(tickets, 10 )
-    tickets = paginator.page(page)
+    paginator = Paginator(tickets, 10)
+    try:
+        tickets = paginator.page(page)
+    except PageNotAnInteger:
+        tickets = paginator.page(1)
+    except EmptyPage:
+        tickets = paginator.page(paginator.num_pages)
 
     search_form = SearchTicketForm()
     context = {

@@ -59,17 +59,17 @@
             {% endif %}</text></div>
     </div>
 {% endfor %}
-
+    {% if tickets.paginator %}
         {% if tickets.has_previous %}
             <a href="{% url 'Home' %}"> << İlk</a>
             <a href="/page/{{ tickets.previous_page_number }}">< Geri</a>
         {% endif %}
-         <b style="font-size:16px">Sayfa: {{ tickets.number }} / {{ tickets.paginator.num_pages }}</b>
+         <b style="font-size:16px">Page: {{ tickets.number }} / {{ tickets.paginator.num_pages }}</b>
         {% if tickets.has_next %}
             <a href="/page/{{ tickets.next_page_number }}">İleri ></a>
             <a href="/page/{{ tickets.paginator.num_pages }}"> Son >></a>
         {% endif %}
-
+    {% endif %}
         <br><br>
 
 {% else %}
