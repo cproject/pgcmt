@@ -12,10 +12,10 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'pgcmt',                      # Or path to database file if using sqlite3.
+        'NAME': 'pgcmt2',                      # Or path to database file if using sqlite3.
         'USER': 'postgres',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '172.18.140.17',                      # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': '172.18.140.124',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -68,7 +68,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     #'/Users/travijuu/Coding/github/pgcmt/pgcmt/static',
-    '/home/travego/repos/pgcmt/pgcmt/static',
+    '/srv/pgcmt/project/pgcmt/static',
     #'/srv/pgcmt/project/pgcmt/static'
 )
 
@@ -110,7 +110,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     # '/Users/travijuu/Coding/github/pgcmt/pgcmt/templates'
-    '/home/travego/repos/pgcmt/pgcmt/templates'
+    '/srv/pgcmt/project/pgcmt/templates'
     #'/srv/pgcmt/project/pgcmt/templates'
 )
 
