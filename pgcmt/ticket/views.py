@@ -8,6 +8,7 @@ from django.template.defaultfilters import slugify as slugify_original
 from django.core.urlresolvers import reverse
 from django.utils import simplejson
 from django.db.models import Count
+from django.core.paginator import Paginator
 
 
 TEMPLATE_REQUESTUSER_FORM = "ticket/form_requestuser.html"
@@ -20,12 +21,16 @@ def slugify(value):
     value = value.replace(u'\u0131', 'i')
     return slugify_original(value)
 
-def home(request):
+def home(request, page=1):
+    
     tickets = Ticket.objects.all().order_by("-id")
+    paginator = Paginator(tickets, 10 )
+    tickets = paginator.page(page)
+
     search_form = SearchTicketForm()
     context = {
         'tickets': tickets,
-        'search_form': search_form,
+        'object_list': search_form,
         'title': 'All Tickets',
         'user': request.user,
         'fullView': False,

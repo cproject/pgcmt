@@ -2,6 +2,7 @@ from auth.models import LoginForm, ChangePasswordForm
 from django.shortcuts import render_to_response, HttpResponseRedirect,render, get_object_or_404
 from django.contrib.auth import *
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 def check_login(request):
     def errorHandle(error):

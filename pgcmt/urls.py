@@ -10,6 +10,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'ticket.views.home', name='Home'),
+    url(r'^page/(?P<page>[\w]+)$', 'ticket.views.home', name='HomePager'),
 
     url(r'^account/$','auth.views.changePassword',name='ChangePassword'),
 
