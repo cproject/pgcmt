@@ -1,0 +1,79 @@
+{% extends "base.html" %}  
+
+
+{% block content %}
+<!--<form action="/search/" method="GET" id="searchForm" >
+
+{{  search_form.as_table }}
+</form>-->
+<br>
+<form action="/search/" method="GET" id="searchForm" >
+    <div class="input-append">
+        <input class="span2" id="appendedDropdownButton" type="text" placeholder="find" style="width:250px" name="query" value="{{ query }}">
+        <div class="btn-group">
+            <button class="btn dropdown-toggle" data-toggle="dropdown" id="projectName"> 
+                {% if currentProject %} 
+                    {{ currentProject }}
+                {% else %}
+                    ALL
+                {% endif %}
+                <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu">
+                <li><a onclick="select( 'ALL','#projectName','#searchForm' )">ALL</a></li>
+                <li class="divider"></li>
+            {% for project in projects %}
+                {% if currentProject in project %}
+                <li class="active"><a onclick="select( '{{ project }}','#projectName','#searchForm' )" name="project_id" >{{ project }}</a></li>
+                {% else %}
+                <li><a onclick="select( '{{ project }}','#projectName','#searchForm' )" name="project_id">{{ project }}</a></li>
+                {% endif %}
+            {% endfor %} 
+                <input type="hidden" id="project_id" name="project" value="{{ currentProject }}"/>
+            </ul>
+        </div>
+    </div>
+</form>
+{% if tickets|length > 0 %}
+{% for ticket in tickets %}
+    <div class="container">
+        <div class="header"> 
+            <span>
+                <a href="{% url 'ShowUser' ticket.user %}"> {{ ticket.user }}</a> made for 
+                <a href="{% url 'ShowProject' ticket.project %}">{{ ticket.project }}</a></b> requested by 
+                <a href="{% url 'ShowRequestUser' ticket.requested_by_id %}"> {{ ticket.requested_by }}</a> | 
+                <text title="{{ ticket.created_at|date:"d-m-Y H:i" }}" >{{ ticket.created_at|timesince }} ago </text>
+            </span> <a href="{% url 'EditTicket' ticket.id %}" style="float:right;padding-right:10px;color:green">[edit]</a>
+        </div>
+        <div class="content"><text id="content_label"> 
+            {% if not fullView %} 
+                {% if ticket.content|length < 1000 %}
+                    {{ ticket.content|linebreaks }} 
+                {% else %} 
+                    {{ ticket.content|slice:":1000"|linebreaks }} 
+                    <hr style="margin:0; margin-bottom:10px; padding:0;"> <a href="{% url 'ShowTicket' ticket.id %}" style="padding:10px; font-size:14px">Read More » </a> 
+            {% endif %}
+            {% else %}
+                {{ ticket.content|linebreaks }}
+            {% endif %}</text></div>
+    </div>
+{% endfor %}
+    {% if tickets.paginator %}
+        {% if tickets.has_previous %}
+            <a href="{% url 'Home' %}"> << İlk</a>
+            <a href="/page/{{ tickets.previous_page_number }}">< Geri</a>
+        {% endif %}
+         <b style="font-size:16px">Page: {{ tickets.number }} / {{ tickets.paginator.num_pages }}</b>
+        {% if tickets.has_next %}
+            <a href="/page/{{ tickets.next_page_number }}">İleri ></a>
+            <a href="/page/{{ tickets.paginator.num_pages }}"> Son >></a>
+        {% endif %}
+    {% endif %}
+        <br><br>
+
+{% else %}
+<span>NO RESULT FOUND</span>
+{% endif %}
+
+{% endblock %}
