@@ -1,3 +1,4 @@
+Django==1.5.*
 apt-xapian-index==0.45
 argparse==1.2.1
 chardet==2.0.1
@@ -13,4 +14,3 @@ supervisor==3.0b2
 urllib3==1.7.1
 wheel==0.24.0
 wsgiref==0.1.2
-Django==1.5.*
