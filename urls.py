@@ -12,25 +12,25 @@ urlpatterns = patterns('',
     url(r'^$', 'ticket.views.home', name='Home'),
     url(r'^page/(?P<page>[\w]+)$', 'ticket.views.home', name='HomePager'),
 
-    url(r'^account/$','auth.views.changePassword',name='ChangePassword'),
+    url(r'^account/$','auth.views.changePassword', name='ChangePassword'),
 
-    url(r'^show/project/(?P<project_name>\w+)/$','ticket.views.showProject',name='ShowProject'),
-    url(r'^show/ticket/(?P<ticketId>\w+)$','ticket.views.showTicket',name='ShowTicket'),
-    url(r'^show/user/(?P<username>\w+)/$','ticket.views.showUser',name='ShowUser'),
-    url(r'^show/requestuser/(?P<requestuser_id>\w+)/$','ticket.views.showRequestUser',name='ShowRequestUser'),
-    
-    url(r'^create/project/$','ticket.views.createProject',name='CreateProject'),
-    url(r'^create/ticket/$','ticket.views.createTicket',name='CreateTicket'),
-    url(r'^create/requestUser/$','ticket.views.createRequestUser',name='CreateRequestUser'),
+    url(r'^show/project/(?P<project_name>\w+)/$','ticket.views.showProject', name='ShowProject'),
+    url(r'^show/ticket/(?P<ticketId>\w+)$','ticket.views.showTicket', name='ShowTicket'),
+    url(r'^show/user/(?P<username>\w+)/$','ticket.views.showUser', name='ShowUser'),
+    url(r'^show/requestuser/(?P<requestuser_id>\w+)/$','ticket.views.showRequestUser', name='ShowRequestUser'),
 
-    url(r'^edit/ticket/(?P<ticketId>\w+)/$','ticket.views.editTicket',name='EditTicket'),
-    url(r'^delete/ticket/$','ticket.views.deleteTicket',name='DeleteTicket'),
+    url(r'^create/project/$','ticket.views.createProject', name='CreateProject'),
+    url(r'^create/ticket/$','ticket.views.createTicket', name='CreateTicket'),
+    url(r'^create/requestUser/$','ticket.views.createRequestUser', name='CreateRequestUser'),
 
-    url(r'^projects/$','ticket.views.listProjects',name='ListProjects'),
-    url(r'^search/$','ticket.views.searchTicket',name='searchTicket'),
+    url(r'^edit/ticket/(?P<ticketId>\w+)/$','ticket.views.editTicket', name='EditTicket'),
+    url(r'^delete/ticket/$','ticket.views.deleteTicket', name='DeleteTicket'),
 
-    url(r'^login/$','auth.views.check_login',name='Login'),
-    url(r'^logout/$','auth.views.logout_view',name='Logout'),
+    url(r'^projects/$','ticket.views.listProjects', name='ListProjects'),
+    url(r'^search/$','ticket.views.searchTicket', name='searchTicket'),
+
+    url(r'^login/$','auth.views.check_login', name='Login'),
+    url(r'^logout/$','auth.views.logout_view', name='Logout'),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

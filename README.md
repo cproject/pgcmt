@@ -15,3 +15,4 @@ This is easy to follow and find all changes you're applied in production databas
 * Add your database as project (**Create Project**)
 * Create responsible people who requests DDL changes (**Create Responsible**)
 * Add your DDL Changes or anything (**Create Ticket**)
+* Refactoring is done
